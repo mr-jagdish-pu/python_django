@@ -40,6 +40,46 @@
         "documentation": {}
     },
     {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -73,22 +113,6 @@
         "documentation": {}
     },
     {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -112,6 +136,60 @@
         "description": "app.apps",
         "peekOfCode": "class AppConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'app'",
         "detail": "app.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Student",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class Student(models.Model):\n    name = models.CharField(max_length=50)\n    age = models.IntegerField\n    address = models.CharField(max_length=20)\n    faculty_choices = (\n        ('BCA','bca')\n        ('BBA','bba')\n        ('MCA','mca')\n    )\n    faculty = models.CharField(max_length=10)",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "app.urls",
+        "description": "app.urls",
+        "peekOfCode": "urlpatterns = [\n    path('',views.home),\n    path('about',views.about),\n    path('contact', views.contact),\n    path('jobs',views.jobs)\n]",
+        "detail": "app.urls",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def home(req):\n    return HttpResponse(\"<center><img src='https://media.tenor.com/hm6dEqOq7q8AAAAM/endhiran-chitti.gif' width='50%'/></center>\")\ndef about(req):\n    return HttpResponse('''<div style=\"background-color: #f4f4f4; padding: 50px 20px; text-align: center;\">\n    <div style=\"color: #2c3e50; font-size: 3em; font-weight: bold;\">About Us</div>\n    <div style=\"color: #7f8c8d; font-size: 1.2em; margin-top: 10px;\">We create exceptional digital experiences</div>\n</div>\n<div style=\"padding: 20px; max-width: 1200px; margin: 0 auto;\">\n    <div style=\"font-size: 1.5em; color: #2c3e50; margin-bottom: 20px;\">Our Mission</div>\n    <div style=\"font-size: 1em; color: #555; margin-bottom: 40px;\">",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "about",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def about(req):\n    return HttpResponse('''<div style=\"background-color: #f4f4f4; padding: 50px 20px; text-align: center;\">\n    <div style=\"color: #2c3e50; font-size: 3em; font-weight: bold;\">About Us</div>\n    <div style=\"color: #7f8c8d; font-size: 1.2em; margin-top: 10px;\">We create exceptional digital experiences</div>\n</div>\n<div style=\"padding: 20px; max-width: 1200px; margin: 0 auto;\">\n    <div style=\"font-size: 1.5em; color: #2c3e50; margin-bottom: 20px;\">Our Mission</div>\n    <div style=\"font-size: 1em; color: #555; margin-bottom: 40px;\">\n        Our mission is to deliver high-quality digital solutions that transform businesses and enrich user experiences. We believe in innovation, creativity, and the power of technology to drive positive change.\n    </div>",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "contact",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def contact(req):\n    return HttpResponse('''<div style=\"background-color: #f4f4f4; padding: 50px 20px; text-align: center;\">\n    <div style=\"color: #2c3e50; font-size: 3em; font-weight: bold;\">Contact Us</div>\n    <div style=\"color: #7f8c8d; font-size: 1.2em; margin-top: 10px;\">We'd love to hear from you! Fill out the form below to get in touch.</div>\n</div>\n<div style=\"padding: 20px; max-width: 1200px; margin: 40px auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;\">\n    <div style=\"flex: 1; min-width: 300px; margin-right: 20px;\">\n        <img src=\"https://www.searchenginejournal.com/wp-content/uploads/2022/08/contact-us-2-62fa2cc2edbaf-sej.png\" alt=\"Contact Us\" style=\"width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">\n    </div>\n    <div style=\"flex: 1; min-width: 300px;\">",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "jobs",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def jobs(req):\n    return HttpResponse(''' <div style=\"background-color: #f4f4f4; padding: 50px 20px; text-align: center;\">\n    <div style=\"color: #2c3e50; font-size: 3em; font-weight: bold;\">Job Listings</div>\n    <div style=\"color: #7f8c8d; font-size: 1.2em; margin-top: 10px;\">Find your next career opportunity</div>\n</div>\n<div style=\"padding: 20px; max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;\">\n    <!-- Job 1 -->\n    <div style=\"background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">\n        <div style=\"font-size: 1.5em; color: #2c3e50; margin-bottom: 10px;\">Software Engineer</div>\n        <div style=\"color: #555; font-size: 1.1em;\">Salary: $80,000 - $100,000</div>",
+        "detail": "app.views",
         "documentation": {}
     },
     {
