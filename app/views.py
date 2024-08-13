@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from app.models import Student
 
 # Create your views here.
 def home(req):
@@ -192,3 +193,9 @@ def jobs(req):
     }
 </script>
  ''')
+
+def read(req):
+    student = Student.objects.all()
+    return render(req, 'read.html',{'students':student})
+    
+    
