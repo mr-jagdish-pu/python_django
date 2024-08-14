@@ -1,5 +1,6 @@
+from pyexpat.errors import messages
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from app.models import Student
 
 # Create your views here.
@@ -197,5 +198,15 @@ def jobs(req):
 def read(req):
     student = Student.objects.all()
     return render(req, 'read.html',{'students':student})
+
+def remove (req,id):
+    
+    student = Student.objects.get(id=id)
+    
+    # Delete the student object
+    student.delete()
+    
+    # Redirect to the 'read' page after deletion
     
     
+    return redirect("/read")
