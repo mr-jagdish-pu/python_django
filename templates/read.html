@@ -6,6 +6,7 @@ Student List
 
 {% block content %}
 <div class="container">
+    <a href="/create"><button class="btn btn-primary">Create New Record</button></a>
     <h1 class="my-4">Student List</h1>
     <table class="table table-striped">
         <thead>
@@ -26,7 +27,11 @@ Student List
                 <td>{{ student.age }}</td>
                 <td>{{ student.address }}</td>
                 <td>{{ student.get_faculty_display }}</td>
-               <td> <button class="btn btn-danger"><a href="http://127.0.0.1:8000/delete/{{student.id}}"/>Delete</button></td>
+               <td>
+                <a href="http://127.0.0.1:8000/update/{{student.id}}"><button class="btn btn-info">Update</button>
+
+                 <a href="http://127.0.0.1:8000/delete/{{student.id}}"><button class="btn btn-danger">Delete</button>
+                </a></td>
             </tr>
             {% empty %}
             <tr>

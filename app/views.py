@@ -1,7 +1,9 @@
 from pyexpat.errors import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from app.forms import StudentFrorm
 from app.models import Student
+
 
 # Create your views here.
 def home(req):
@@ -195,6 +197,10 @@ def jobs(req):
 </script>
  ''')
 
+
+
+
+
 def read(req):
     student = Student.objects.all()
     return render(req, 'read.html',{'students':student})
@@ -210,3 +216,22 @@ def remove (req,id):
     
     
     return redirect("/read")
+
+def create(req):
+       
+    if req.method == 'POST':
+        form = StudentFrorm(req.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/read')
+    else:
+        form = StudentFrorm()  # Instantiate a new, empty form for GET requests
+
+    return render(req, 'create.html', {'form': form})
+def update(r,id):
+    stu = Student.objects.get(id=id)
+    form = StudentFrorm(instance=stu)
+    if r.method == 'POST':
+        form.save
+        return redirect('/read')
+    return render(r,"update.html",{'form':form})

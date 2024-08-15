@@ -72,11 +72,35 @@
         "documentation": {}
     },
     {
+        "label": "Student",
+        "importPath": "app.models",
+        "description": "app.models",
+        "isExtraImport": true,
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
         "isExtraImport": true,
         "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "ModelForm",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
         "documentation": {}
     },
     {
@@ -160,6 +184,14 @@
         "documentation": {}
     },
     {
+        "label": "StudentFrorm",
+        "importPath": "app.forms",
+        "description": "app.forms",
+        "isExtraImport": true,
+        "detail": "app.forms",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -229,6 +261,15 @@
         "documentation": {}
     },
     {
+        "label": "StudentFrorm",
+        "kind": 6,
+        "importPath": "app.forms",
+        "description": "app.forms",
+        "peekOfCode": "class StudentFrorm(forms.ModelForm):\n    class Meta:\n        model = Student\n        fields = ['name', 'age', 'address', 'faculty']\n        # Custom widget and CSS classes for each field\n        widgets = {\n            'name': forms.TextInput(attrs={\n                'class': 'form-control',\n                'placeholder': 'Enter your name'\n            }),",
+        "detail": "app.forms",
+        "documentation": {}
+    },
+    {
         "label": "Student",
         "kind": 6,
         "importPath": "app.models",
@@ -242,7 +283,7 @@
         "kind": 5,
         "importPath": "app.urls",
         "description": "app.urls",
-        "peekOfCode": "urlpatterns = [\n    path('',views.home),\n    path('about',views.about),\n    path('contact', views.contact),\n    path('jobs',views.jobs),\n    path('read',views.read),\n    path('delete/<int:id>',views.remove)\n]",
+        "peekOfCode": "urlpatterns = [\n    path('',views.home),\n    path('about',views.about),\n    path('contact', views.contact),\n    path('jobs',views.jobs),\n    path('read',views.read),\n    path('delete/<int:id>',views.remove),\n    path('create',views.create, name=\"create\"),\n    path('update/<int:id>',views.update)\n]",
         "detail": "app.urls",
         "documentation": {}
     },
@@ -287,7 +328,7 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def read(req):\n    student = Student.objects.all()\n    return render(req, 'read.html',{'students':student})\ndef remove (req,id):\n    student = Student.objects.get(id=id)\n    # Delete the student object\n    student.delete()\n    # Redirect to the 'read' page after deletion\n    return redirect(\"/read\")",
+        "peekOfCode": "def read(req):\n    student = Student.objects.all()\n    return render(req, 'read.html',{'students':student})\ndef remove (req,id):\n    student = Student.objects.get(id=id)\n    # Delete the student object\n    student.delete()\n    # Redirect to the 'read' page after deletion\n    return redirect(\"/read\")\ndef create(req):",
         "detail": "app.views",
         "documentation": {}
     },
@@ -296,7 +337,25 @@
         "kind": 2,
         "importPath": "app.views",
         "description": "app.views",
-        "peekOfCode": "def remove (req,id):\n    student = Student.objects.get(id=id)\n    # Delete the student object\n    student.delete()\n    # Redirect to the 'read' page after deletion\n    return redirect(\"/read\")",
+        "peekOfCode": "def remove (req,id):\n    student = Student.objects.get(id=id)\n    # Delete the student object\n    student.delete()\n    # Redirect to the 'read' page after deletion\n    return redirect(\"/read\")\ndef create(req):\n    if req.method == 'POST':\n        form = StudentFrorm(req.POST)\n        if form.is_valid():",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "create",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def create(req):\n    if req.method == 'POST':\n        form = StudentFrorm(req.POST)\n        if form.is_valid():\n            form.save()\n            return redirect('/read')\n    else:\n        form = StudentFrorm()  # Instantiate a new, empty form for GET requests\n    return render(req, 'create.html', {'form': form})\ndef update(r,id):",
+        "detail": "app.views",
+        "documentation": {}
+    },
+    {
+        "label": "update",
+        "kind": 2,
+        "importPath": "app.views",
+        "description": "app.views",
+        "peekOfCode": "def update(r,id):\n    stu = Student.objects.get(id=id)\n    form = StudentFrorm(instance=stu)\n    if r.method == 'POST':\n        form.save\n        return redirect('/read')\n    return render(r,\"update.html\",{'form':form})",
         "detail": "app.views",
         "documentation": {}
     },
