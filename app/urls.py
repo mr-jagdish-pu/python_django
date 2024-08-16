@@ -10,5 +10,7 @@ urlpatterns = [
     path('read',views.read),
     path('delete/<int:id>',views.remove),
     path('create',views.create, name="create"),
-    path('update/<int:id>',views.update)
+    path('update/<int:id>',views.update),
+    path('login',views.loginn),
+    path('logout',views.logoutt),
 ]

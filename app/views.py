@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from app.forms import StudentFrorm
 from app.models import Student
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
+from project.settings import LOGIN_REDIRECT_URL
 
 # Create your views here.
 def home(req):
@@ -200,7 +203,7 @@ def jobs(req):
 
 
 
-
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def read(req):
     student = Student.objects.all()
     return render(req, 'read.html',{'students':student})
@@ -217,6 +220,8 @@ def remove (req,id):
     
     return redirect("/read")
 
+
+
 def create(req):
        
     if req.method == 'POST':
@@ -232,6 +237,29 @@ def update(r,id):
     stu = Student.objects.get(id=id)
     form = StudentFrorm(instance=stu)
     if r.method == 'POST':
-        form.save
-        return redirect('/read')
+        form = StudentFrorm(r.POST,instance=stu)
+        if form.is_valid():
+            form.save()
+            return redirect('/read')
     return render(r,"update.html",{'form':form})
+
+
+
+
+def  loginn(req):
+    if(req.method == 'POST'):
+        username = req.POST.get('username')
+        password = req.POST.get('password')
+        user = authenticate(username=username,password=password)
+        if user is not None:
+            login(req,user)
+            return redirect('/read')
+        else:
+            return render(req,'loginn.html',{'message':'Invalid Credentials'})
+            
+        
+    return render(req,'loginn.html')
+def logoutt(req):
+    logout(req)
+    return redirect('/login')
+
